@@ -7,6 +7,7 @@ import { startBillingTimer } from "./services/billingTimer.service.js";
 import "./loaders/firebase.js";
 import ChatSession from "./models/ChatSession.js";
 
+const PORT = process.env.PORT || env.PORT || 4000;
 const server = http.createServer(app);
 
 await connectDB();
@@ -18,7 +19,8 @@ app.set("io", io);
 
 startBillingTimer(io);
 console.log("MODEL CHECK:", ChatSession.collection.name);
-server.listen(env.PORT, "0.0.0.0", () => {
-  console.log(`API listening on http://0.0.0.0:${env.PORT}`);
+
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`API listening on port ${PORT}`);
 });
 
